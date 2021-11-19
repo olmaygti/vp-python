@@ -10,6 +10,11 @@ try:
 
     cur.execute("""SELECT * from vp_user limit 1""")
 
+    # This is now an array of arrays
+    #[
+    # [row1value1, row1value2, ...]
+    # row2....
+    #]
     rows = cur.fetchall()
 
     myRows = []
@@ -18,7 +23,8 @@ try:
         myDict = {}
         myRows.append(myDict)
         for index in range(len(row)):
-            # print(cur.description[index].name + ' : ' + str(row[index]))
+            # for each value of the row, we take its column name and add an entry
+            # on the dictionary where the key is column name, and the value is the value from the row
             myDict[cur.description[index].name] = row[index]
         print()
 
